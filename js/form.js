@@ -4,9 +4,6 @@ botaoAdicionar.addEventListener("click", function (event) {
 
     var form = document.querySelector('#form-adiciona');
     var paciente = obtemPacienteDoFormulario(form);
-
-    var pacienteTr = montaTr(paciente);
-
     var erros = validaPaciente(paciente);
 
     if (erros.length > 0) {
@@ -14,14 +11,19 @@ botaoAdicionar.addEventListener("click", function (event) {
         return;
     }
 
-    var tabela = document.querySelector('#tabela-pacientes');
-
-    tabela.appendChild(pacienteTr);
+    adicionaPacienteNaTabela(paciente);
 
     form.reset();
     var mensagensErro = document.querySelector('#mensagens-erro');
     mensagensErro.innerHTML = "";
 });
+
+function adicionaPacienteNaTabela(paciente) {
+    var pacienteTr = montaTr(paciente);
+    var tabela = document.querySelector('#tabela-pacientes');
+    tabela.appendChild(pacienteTr);
+
+}
 
 function exibeMensagensErro(erros) {
     var ul = document.querySelector('#mensagens-erro');
@@ -71,19 +73,19 @@ function montaTd(dado, classe) {
 function validaPaciente(paciente) {
     var erros = [];
 
-    if(paciente.nome.length == 0){
+    if (paciente.nome.length == 0) {
         erros.push("O Nome deve ser preenchido");
     }
 
-    if(paciente.gordura.length == 0){
+    if (paciente.gordura.length == 0) {
         erros.push('Informe a % de Gordura');
     }
 
-    if(paciente.peso.length == 0){
+    if (paciente.peso.length == 0) {
         erros.push('Informe o peso');
     }
 
-    if(paciente.altura.length == 0){
+    if (paciente.altura.length == 0) {
         erros.push('Informe a altura');
     }
 
